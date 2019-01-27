@@ -1,8 +1,7 @@
 /* Author: John Nemeth
-   DuckID: jnemeth
-   Assignment: Project 1 Part 1
-   Description: Part 1 for project 1
-   Sources: class material, lab0, lab1, lab2
+   Description: implements master control program, simulates process scheduling,
+		launches workload
+   Sources: linux manual entries, project material
 */
 #include <stdio.h>
 #include <stdlib.h>

@@ -1,7 +1,5 @@
 /* Author: John Nemeth
-   DuckID: jnemeth
-   Assignment: Project 1 Part 3
-   Description: Part 3 for project 1
+   Description: addition of features: schedules process execution
    Sources: class material, lab0, lab1, lab2
 */
 

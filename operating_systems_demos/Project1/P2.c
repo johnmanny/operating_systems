@@ -1,7 +1,5 @@
 /* Author: John Nemeth
-   DuckID: jnemeth
-   Assignment: Project 1 Part 2
-   Description: Part 2 for project 1
+   Description: implements methods for controlling execution of designated programs
    Sources: class material, lab0, lab1, lab2
 */
 #include <stdio.h>

@@ -1,6 +1,4 @@
 /* Author: John Nemeth
-   DuckID: jnemeth
-   Assignment: Project 1 Part 4
    Description: Part 4 for project 1
    Sources: class material, lab0, lab1, lab2
 */
