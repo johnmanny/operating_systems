@@ -1,6 +1,20 @@
-# CIS415 Project2
+# Pub/Subscriber Model Demonstration
+## Description:
+This project implements a publisher/subscriber data communication model. 
+- Publishers connect to a server, notify of their interested topics and 
+publish messages to those topics.
+- Subcribers connect to a server, notify of the topics they would like
+to subscribe to, and through various scenarios (wait until no new messages
+for x minutes and other scenarios) disconnect from the server.
+All publisher and subscriber communication to the server is achieved through
+linux pipelines. In addition, their activities are fully simulated through
+ relevant publisher.c/subscriber.c implementation files. Total synchronization is 
+used to many entities can communicate with the server at the same time. 
+This project is meant to demonstrate 4 main topics within conventional operating
+systems: interprocess communication, threading, synchronization, and file I/O.
 ## Important Notes:
-I worked on this project starting from part 1 to part 6 before I 
+- This is the final project for an operating systems class at UO.
+- I worked on this project starting from part 1 to part 6 before I 
 implemented the test scenarios as described by project specs.
 So, while the scenarios are meant to be based on only part 4 of the 
 project, I asked if it was appropriate to develop the scenarios for 
@@ -82,11 +96,6 @@ in the pub and sub files of the scenarios, where appropriate.
 in Scenario 5. I ended up back-propogating a lot of fixes in those scenarios
 to files completed earlier.
 
-- I completed up to part 3 before the near-completed versions of P1 and P2 
-were released.
-
-- There are some files in this project that I look back on and think 'what was
-i thinking?', but, since i've heard the scenarios will be what is primarily graded
-(which is what i've spent the most time tidying up and spreading fixes around for),
-instead of spending hours redoing spacey, middle-of-the-night code which won't be 
-graded, i'll go take a long and well deserved bath.
+## Sources:
+All files are original unless stated otherwise in file headers or comments (and there are a few,
+though not so much relevant to the main activities of the project)
