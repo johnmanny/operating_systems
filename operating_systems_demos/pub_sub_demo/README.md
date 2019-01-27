@@ -12,7 +12,15 @@ linux pipelines. In addition, their activities are fully simulated through
 used to many entities can communicate with the server at the same time. 
 This project is meant to demonstrate 4 main topics within conventional operating
 systems: interprocess communication, threading, synchronization, and file I/O.
+- Features multi-threading
+- Most complete files are: QheaderScen5.h, QserverScen5.c, QtopicsScen5.c, pubScen5.c, subScen5.c
+which can be run with 
+```
+make QScen5
+make runScen5
+```
 ## Important Notes:
+- Developed on and for a linux environment (linux system calls used)
 - This is the final project for an operating systems class at UO.
 - I worked on this project starting from part 1 to part 6 before I 
 implemented the test scenarios as described by project specs.
@@ -22,7 +30,7 @@ further parts and I was told yes. There is full communication between
 the various pub/sub.c files using pipelines beginning from part 
 1 of the project. I performed what error and memory 
 leak checks I could before I moved onto the next part of the Project.
-## Launching Test/Grading Scenarios:
+## Launching Test Scenarios:
 Max Topic Queue and entry number values are listed in the header files
 for each associated scenario. Files used for each make target is listed
 in the makefile, but I will write the dependencies here. Output using
