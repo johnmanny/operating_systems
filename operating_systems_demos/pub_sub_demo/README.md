@@ -8,8 +8,8 @@ to subscribe to, and through various scenarios (wait until no new messages
 for x minutes and other scenarios) disconnect from the server.
 All publisher and subscriber communication to the server is achieved through
 linux pipelines. In addition, their activities are fully simulated through
- relevant publisher.c/subscriber.c implementation files. Total synchronization is 
-used to many entities can communicate with the server at the same time. 
+relevant publisher.c/subscriber.c implementation files. 
+
 This project is meant to demonstrate 4 main topics within conventional operating
 systems: interprocess communication, threading, synchronization, and file I/O.
 
@@ -21,7 +21,7 @@ systems: interprocess communication, threading, synchronization, and file I/O.
 files in this directory represent the final result. 
 
 ## Use
-This should be run in a linux environment. The following make commands
+This project should be run in a linux environment. The following make commands
 work in the terminal:
 
 ```
