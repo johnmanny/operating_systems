@@ -68,6 +68,10 @@ accurate source information, documentation material, or bug-fixed code. However,
 the makefile targets, it is possible to run different scenarios and earlier parts of the 
 project to gauge how it progressed. 
 
+- This project was completed during University of Oregon's 2018 fall class of 
+operating systems and -some-, not all, specifications are derived from those 
+instructions. 
+
 ## Sources:
 The vast majority of this code is original. However, some struct templates and other
 minor code was based on academic material cited both in the project description and 
