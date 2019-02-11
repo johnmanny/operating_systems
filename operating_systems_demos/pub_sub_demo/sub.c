@@ -1,7 +1,7 @@
 /*
     Author: John Nemeth
     Description: subscriber process file
-    Sources: academic material, linux manual pages
+    Sources: linux manual pages
 */
 
 #include <stdio.h>
