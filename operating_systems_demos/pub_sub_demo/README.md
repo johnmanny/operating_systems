@@ -14,6 +14,14 @@ This project is meant to demonstrate 4 main topics within conventional operating
 systems: interprocess communication, threading, synchronization, and file I/O.
 
 ## Important Notes:
+- Control of program flow: 
+```
+// begins at Qserver.c
+Qserver.c -> Qtopics.c -> Qserver.c (for end of program execution)
+    |            |
+    v            v
+    (pub.c, sub.c)
+```
 - Features multi-threading
 - Developed on and for a linux environment (linux system calls used)
 - More detailed project instructions can be found in project_details.pdf
