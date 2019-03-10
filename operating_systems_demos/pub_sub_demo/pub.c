@@ -22,34 +22,34 @@
 */
 int sendMessage(char * msg, int readEnd, int writeEnd) {
 
-    char buff[1024];									// temp buffer to read receiving message into
+    char buff[1024];					// temp buffer to read receiving message into
     while (1) {
-        write(writeEnd, msg, strlen(msg) + 1);			// write the determined response to server
-        read(readEnd, buff, 1024);						// read response from server (synchronous msg passing)
+        write(writeEnd, msg, strlen(msg) + 1);		// write the determined response to server
+        read(readEnd, buff, 1024);			// read response from server (synchronous msg passing)
 
         fprintf(stdout, "\n---[PUB %d] RECIEVED '%s' FROM SERVER\n", getpid(), buff);
-        if (strcmp(buff, "reject") == 0) {				// if server rejects msg, immediately send again
+        if (strcmp(buff, "reject") == 0) {		// if server rejects msg, immediately send again
             continue;
         }
-        else if (strcmp(buff, "accept") == 0) {			// server accepted attempted connection
+        else if (strcmp(buff, "accept") == 0) {		// server accepted attempted connection
             break;
         }
-        else if (strcmp(buff, "retry") == 0) {			// servers asks to retry, wait for some time and resend
-            usleep(100000);								// sleep for .1 secs - to reduce output spam
+        else if (strcmp(buff, "retry") == 0) {		// servers asks to retry, wait for some time and resend
+            usleep(100000);				// sleep for .1 secs - to reduce output spam
             continue;
         }
-        else if (strcmp(buff, "successful") == 0) {		// server communicates successful generic message
+        else if (strcmp(buff, "successful") == 0) {	// server communicates successful generic message
             break;
         }
-        else if (strcmp(buff, "terminate") == 0) {		// server sends termination message
-            return 0;									// function sends false when given 'signal' to terminate
+        else if (strcmp(buff, "terminate") == 0) {	// server sends termination message
+            return 0;					// function sends false when given 'signal' to terminate
         }
-        else {											// unknown message sent, terminate or send next message
+        else {						// unknown message sent, terminate or send next message
             fprintf(stdout, "PUB %d MESSAGE HAS NO DEFINED RESPONSE\n", getpid());	
             break;
         }
     }
-    return 1;											// function sends 1 to continue sending messages
+    return 1;						// function sends 1 to continue sending messages
 }
 
 /*	simulates the operation of a publisher process - is executed as virtual process from Qserver.c
@@ -57,17 +57,17 @@ int sendMessage(char * msg, int readEnd, int writeEnd) {
 */
 int main(int argc, char * argv[]){
 
-	// terminate if bad arguments sent
+    // terminate if bad arguments sent
     if(argc != 4) {
         fprintf(stderr, "PUBLISHER error, bad args");
         exit(0);
     }
 
-	// ends of linux pipes - see linux manuals
+    // ends of linux pipes - see linux manuals
     int readEnd = atoi(argv[1]);
     int writeEnd = atoi(argv[2]);
 
-	// the specific topic this publisher publishes to
+    // the specific topic this publisher publishes to
     int topic = atoi(argv[3]);
 
     fprintf(stdout, "\n---[PUB PID %d] using topic %d\n", (int)getpid(), topic);
@@ -76,15 +76,15 @@ int main(int argc, char * argv[]){
     // generate connect message
     char msgString[1024];
     char msg[QUACKSIZE + 1];
-    char toUse[] = { "abcdefghijklmnopqrstuvwxyz " };			// allowed chars for message
-    int i, j, v;												// indices for loops
+    char toUse[] = { "abcdefghijklmnopqrstuvwxyz " };		// allowed chars for message
+    int i, j, v;						// indices for loops
 
-	// construct connection request message
+    // construct connection request message
     sprintf(msgString, "pub %d connect", (int)getpid());
     sendMessage(msgString, readEnd, writeEnd);   
     sendMessage("end", readEnd, writeEnd);   
 
-	// use the address of declared int variable as seed for random number generator
+    // use the address of declared int variable as seed for random number generator
     srand((uintptr_t) &writeEnd);
 
     // repeat 20 times (where each iteration is a second)
@@ -93,21 +93,21 @@ int main(int argc, char * argv[]){
         for (j = 0; j < 20; j++) {
             // choose random-length & random-char msg up to QUACKSIZE size
             for (v = 0; v < QUACKSIZE; v++) {
-                msg[v] = toUse[rand() %28];						// want to include null ptr for variable size msgs
+                msg[v] = toUse[rand() %28];			// want to include null ptr for variable size msgs
             }
-            msg[QUACKSIZE] = '\0';								// just in case they're all not null ptr
+            msg[QUACKSIZE] = '\0';				// just in case they're all not null ptr
 
             // only posts to one topic that was passed as argument in argv[3]
             sprintf(msgString, "topic %d %s", topic, msg);
             sendMessage(msgString, readEnd, writeEnd);
             sendMessage("end", readEnd, writeEnd);
         }
-        sleep(1);												// sleep 1 second
+        sleep(1);
     }
 
-	// after messages completed, send terminate    
+    // after messages completed, send terminate    
     sendMessage("terminate", readEnd, writeEnd);
 
-	// for succesfull termination
+    // for succesfull termination
     return 0;
 }
